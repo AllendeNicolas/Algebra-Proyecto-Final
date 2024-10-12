@@ -1,26 +1,27 @@
 import numpy as np
 
-"""Aqui se definen la variables de la Ecuación General donde: D (Distancia), A (Autonomía), C_g (Costo Gasoil), T (Capacidad del Tanque), C_v (Costo de Viaticos), C_p (Cosot Peaje), C_r (Cosot Repostaje o Recarga de combustible), G_ad (Gastos adicionales)""" 
+"""Aqui se definen la variables de la Ecuación General donde: D (Distancia), A (Autonomía), C_g (Costo Gasoil), T (Capacidad del Tanque), C_v (Costo de Viaticos),
+C_p (Cosot Peaje), C_r (Cosot Repostaje o Recarga de combustible), G_ad (Gastos adicionales)""" 
 
 #C_comb (Es una simplificación de la ecuación, con el fin de hacer economía de código, obtenemos directamente el costo total del Gasoil, directamente teneindo en cuenta la distancia (D) y la autonomía (A) del vehículo.)
 
 #PARA USAR EL CÓDIGO, SEGUIR CORRECTAMENTE LAS INSTRUCCIONES DEL PROGRAMA:
 
 def calcular_costo_total(D, A, C_g, T, C_v=0, C_p=0, C_r=0, G_ad=0):
-    
+
     # Costo del combustible (Fórmula Simplificada)
     C_comb = (D / A) * C_g
     
     # Preguntar si hay costos de viáticos
     if C_v == 0:
         viaticos = input("¿Hay costos de viáticos? (sí/no): ").strip().lower()
-        if viaticos == 'sí':
+        if viaticos in ('sí', 'si'):
             C_v = float(input("Ingrese el monto de los viáticos: "))
     
     # Preguntar si hay costos de peaje
     if C_p == 0:
         peajes = input("¿Hay costos de peaje? (sí/no): ").strip().lower()
-        if peajes == 'sí':
+        if peajes in ('sí', 'si'):
             num_peajes = int(input("Ingrese el número de peajes: "))
             C_p = sum([float(input(f"Ingrese el costo del peaje {i+1}: ")) for i in range(num_peajes)])
     
@@ -36,7 +37,7 @@ def calcular_costo_total(D, A, C_g, T, C_v=0, C_p=0, C_r=0, G_ad=0):
     C_repostajes = num_repostajes * C_r
     
     # Preguntar si hay gastos adicionales
-    gastos_adicionales = 0
+    gastos_adicionales = 0 
     agregar_gastos = input("¿Desea agregar algún gasto adicional? (sí/no): ").strip().lower()
     while agregar_gastos == 'sí':
         G_ad = float(input("Ingrese el monto del gasto adicional: "))
